@@ -1,6 +1,8 @@
 #ifndef __PARALLEL_ACCUMULATE_H__
 #define __PARALLEL_ACCUMULATE_H__
 
+#include <iostream>
+
 #include <thread>
 
 #include <algorithm>
@@ -27,6 +29,8 @@ T parallel_accumulate(Iterator first, Iterator last, T init) {
         std::thread::hardware_concurrency();
     const unsigned long num_threads = 
         std::min(hardware_threads!=0 ? hardware_threads : 2, max_threads);
+
+    // std::cout << "num_threads = " << num_threads << std::endl;
 
     const unsigned long block_size = length/num_threads;
 
