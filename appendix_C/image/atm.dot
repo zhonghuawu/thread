@@ -1,0 +1,31 @@
+digraph G {
+	node [shape=box];
+	{
+		graph [rank=same, nodesep=0.25, rankdir=LR];
+		a		 [label=初始状态];
+		b		 [label=获取PIN];
+		c		 [label=校验PIN];
+	}
+	{
+		graph [rank=same, nodesep=1.0, rankdir=LR
+		];
+		d		 [label="等待\n取款金额"];
+		f		 [label=完成];
+	}
+	{
+		graph [rank=same];
+		e		 [label=等待确认];
+	}
+	a -> b	 [label=插入卡];
+	a -> f	 [dir=back, label=取出卡];
+	b:n -> b:ne	 [label=按下数字键, labelangle=25.0];
+	b:e -> b:se	 [label=按下清楚最后数字键];
+	b:n -> c:n	 [label=按下数字键（最后一位）];
+	b -> f	 [label=按下取消键];
+	c -> d	 [label=PIN正确];
+	c -> f	 [label=PIN不正确];
+	d -> e	 [label=按下取款金额];
+	e -> f	 [label="取款正确\n（提供钞票）"];
+	e -> f	 [label=资金不足];
+	f -> d	 [dir=back, label=按下取消键];
+}
