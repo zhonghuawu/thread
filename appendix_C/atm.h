@@ -110,7 +110,7 @@ class atm {
 
     void done_processing() {
         interface_hardware.send(eject_card());
-        state=&atm::wait_for_action;
+        state=&atm::wait_for_card;
     }
 
     atm(const atm&)=delete;
