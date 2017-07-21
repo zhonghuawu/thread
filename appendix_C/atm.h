@@ -125,7 +125,7 @@ class atm {
     }
 
     void run() {
-        state=&atm::wait_for_action;
+        state=&atm::wait_for_card;
         try {
             for(;;) {
                 (this->*state)();
